@@ -15,8 +15,13 @@ const Text = () => {
     setText(newtext);
   }
   const handlleCopy = () => {
-    navigator.clipboard.writeText(text);
+    text.select();
+    navigator.clipboard.writeText(text.value);
     alert("Text copied successfully");
+  }
+  const handleRemoveExtraSpaces = () => {
+    const newtext = text.split(/[ ] +/);
+    setText(newtext.join(" "));
   }
   const handleOnChange = (event) => {
 
@@ -39,9 +44,13 @@ const Text = () => {
         <br />
         <br />
         <button onClick={handlleCopy} >Copy</button>
+        <button onClick={handleRemoveExtraSpaces}>
+          Remove extra Spaces
+        </button>
         <p>count  character {text.length}</p>
         <h2>Text Preview</h2>
         <h3>{text}</h3>
+
       </center>
     </>
   )
